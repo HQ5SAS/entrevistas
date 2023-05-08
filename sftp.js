@@ -2,7 +2,7 @@
 let Client = require('ssh2-sftp-client');
 const fs = require('fs');
 //const { exportsDB } = require("./db");
-const con = exportsDB();
+//const con = exportsDB();
 
 // ID_userS="3960020000112264857"
 // let sqlVideo = "SELECT `preguntasRes`,`ruta`, `respuestas` FROM defaultdb.entrevistas WHERE `id` = " + ID_userS + ";"
