@@ -72,7 +72,7 @@ class SFTPClient {
   constructor() {
     this.client = new Client();
   }
-
+//
   async connect(options) {
     console.log(`Connecting to ${options.host}:${options.port}`);
     try {
