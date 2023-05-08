@@ -30,18 +30,7 @@ con.query(sqlVideo, async function (err, result){
     console.log(result[index]["aplicar_convocatorias_id"])
   };
 })
- listTest=["/mnt/entrevistavirtual/3960020000112264857_1.mp4", "/mnt/entrevistavirtual/3960020000112264857_2.mp4","/mnt/entrevistavirtual/3960020000112264857_3.mp4" ];
-var countProcess=0;
-idTest="3960020000112264857";
-for (route_ in listTest){
-  countProcess++
-  try{
-    await client.uploadFile(route_ , "./transfdhq5/"+idTest+"_"+countProcess+".mp4");
-  }
-  catch(err){
-    console.log(err)
-  }
-}d
+ 
 
 
 
@@ -102,6 +91,18 @@ class SFTPClient {
     privateKey: sftpSSHKey,
     passphrase: 'transfer',
   });
+  listTest=["/mnt/entrevistavirtual/3960020000112264857_1.mp4", "/mnt/entrevistavirtual/3960020000112264857_2.mp4","/mnt/entrevistavirtual/3960020000112264857_3.mp4" ];
+  var countProcess=0;
+  idTest="3960020000112264857";
+  for (route_ in listTest){
+    countProcess++
+    try{
+      client.uploadFile(route_ , "./transfdhq5/"+idTest+"_"+countProcess+".mp4");
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
   //-----
   // remoteFile="/www/entrevistaVirtHQ5";
   // localFile="/mnt/entrevistavirtual/";
