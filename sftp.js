@@ -31,17 +31,17 @@ con.query(sqlVideo, async function (err, result){
   };
 })
  listTest=["/mnt/entrevistavirtual/3960020000112264857_1.mp4", "/mnt/entrevistavirtual/3960020000112264857_2.mp4","/mnt/entrevistavirtual/3960020000112264857_3.mp4" ];
-var count=0;
+var countProcess=0;
 idTest="3960020000112264857";
 for (route_ in listTest){
-  count++
+  countProcess++
   try{
-    await client.uploadFile(route_ , "./transfdhq5/"+idTest+"_"+count+".mp4");
+    await client.uploadFile(route_ , "./transfdhq5/"+idTest+"_"+countProcess+".mp4");
   }
   catch(err){
     console.log(err)
   }
-}
+}d
 
 
 
