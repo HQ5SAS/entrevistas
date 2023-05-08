@@ -17,14 +17,12 @@ con.query(sqlVideo, async function (err, result){
     for(var i= 1;i<numPreguntas+1;i++  ){
       ruta="/mnt/entrevistavirtual/"+id_+"_"+i+".mp4";
       listaVideos.push(ruta);
-      try{
-        await client.uploadFile(ruta, "./transfdhq5/remote.mp4");
-      }
-      catch(err){
-        console.log(err)
-      }
-
-      
+      // try{
+      //   await client.uploadFile(ruta, "./transfdhq5/remote.mp4");
+      // }
+      // catch(err){
+      //   console.log(err)
+      // }    
     }
     console.log(listaVideos)
     console.log(result[index]["aplicar_convocatorias_id"])
