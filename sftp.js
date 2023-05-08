@@ -1,37 +1,54 @@
-// sftp.js
-//
-// Use this sample code to connect to your SFTP To Go server and run some file operations using Node.js.
-//
-// 1) Paste this code into a new file (sftp.js)
-//
-// 2) Install dependencies
-//   npm install ssh2-sftp-client@^8.0.0
-//
-// 3) Run the script
-//   node sftp.js
-// 
-// Compatible with Node.js >= v12
-// Using ssh2-sftp-client v8.0.0
 
 let Client = require('ssh2-sftp-client');
 const fs = require('fs');
 const { exportsDB } = require("./db");
 const con = exportsDB();
 
-var sql = "UPDATE `entrevistas` SET `ruta`= '" + id + "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
-try {
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("video guardado en db");
-    resSQL = "succesfull query";
-  }).then(sendZoho(req, respuestasConsol));
-}
-catch (error) {
-  resSQL = error;
-}
+// ID_userS="3960020000112264857"
+// let sqlVideo = "SELECT `preguntasRes`,`ruta`, `respuestas` FROM defaultdb.entrevistas WHERE `id` = " + ID_userS + ";"
+//       con.query(sqlVideo, function (err, result) {
+//         if (err) {
+//           errores(res, err400);
+//         }
+//         else {
+//           try {
+//             ruta=result[0]["ruta"]
+//             preguntasRes=result[0]["preguntasRes"]
 
+//           }
+//           catch (err) {
+//             errores(res, err400);
+//             console.log(err);
+//           }
+//         }
+//       });
 
+// var sql = "UPDATE `entrevistas` SET `ruta`= '" + id + "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+// try {
+//   con.query(sql, function (err, result) {
+//     if (err) throw err;
+//     console.log("video guardado en db");
+//     resSQL = "succesfull query";
+//   }).then(sendZoho(req, respuestasConsol));
+// }
+// catch (error) {
+//   resSQL = error;
+// }
 
+// //------------------------------------------------------------------
+// const http = require('http'); // or 'https' for https:// URLs
+
+// const file = fs.createWriteStream("file.jpg");
+// const reqeust = http.get("http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg", function(response) {
+//    response.pipe(file);
+
+//    // after download completed close filestream
+//    file.on("finish", () => {
+//        file.close();
+//        console.log("Download Completed");
+//    });
+// });
+// //-----------------------------------------
 
 class SFTPClient {
   constructor() {
@@ -51,30 +68,6 @@ class SFTPClient {
     await this.client.end();
   }
 
-  async listFiles(remoteDir, fileGlob) {
-    console.log(`Listing ${remoteDir} ...`);
-    let fileObjects;
-    try {
-      fileObjects = await this.client.list(remoteDir, fileGlob);
-    } catch (err) {
-      console.log('Listing failed:', err);
-    }
-
-    const fileNames = [];
-
-    for (const file of fileObjects) {
-      if (file.type === 'd') {
-        console.log(`${new Date(file.modifyTime).toISOString()} PRE ${file.name}`);
-      } else {
-        console.log(`${new Date(file.modifyTime).toISOString()} ${file.size} ${file.name}`);
-      }
-
-      fileNames.push(file.name);
-    }
-
-    return fileNames;
-  }
-
   async uploadFile(localFile, remoteFile) {
     console.log(`Uploading ${localFile} to ${remoteFile} ...`);
     try {
@@ -84,14 +77,6 @@ class SFTPClient {
     }
   }
 
-  async downloadFile(remoteFile, localFile) {
-    console.log(`Downloading ${remoteFile} to ${localFile} ...`);
-    try {
-      await this.client.get(remoteFile, localFile);
-    } catch (err) {
-      console.error('Downloading failed:', err);
-    }
-  }
 
   async deleteFile(remoteFile) {
     console.log(`Deleting ${remoteFile}`);
@@ -116,15 +101,12 @@ class SFTPClient {
     privateKey: sftpSSHKey,
     passphrase: 'transfer',
   });
-
-  //* List working directory files
-  await client.listFiles(".");
-
+  //-----
+  // remoteFile="/www/entrevistaVirtHQ5";
+  // localFile="/mnt/entrevistavirtual/";
+  var video="3960020000012264857_1.mp4"
   //* Upload local file to remote file
-  await client.uploadFile("./local.txt", "./transfdhq5/remote.txt");
-
-  //* Download remote file to local file
-  await client.downloadFile("./transfdhq5/remote.txt", "./download.txt");
+  await client.uploadFile("./mnt/entrevistavirtual/"+video, "./www/entrevistaVirtHQ5/remote.mp4");
 
   //* Delete remote file
   await client.deleteFile("./transfdhq5/remote.txt");
