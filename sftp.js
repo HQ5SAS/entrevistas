@@ -1,7 +1,7 @@
 
 let Client = require('ssh2-sftp-client');
 const fs = require('fs');
-const { exportsDB } = require("./db");
+//const { exportsDB } = require("./db");
 const con = exportsDB();
 
 // ID_userS="3960020000112264857"
