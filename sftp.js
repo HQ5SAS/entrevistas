@@ -5,7 +5,25 @@ const fs = require('fs');
 //const con = exportsDB();
 
 // ID_userS="3960020000112264857"
-// let sqlVideo = "SELECT `preguntasRes`,`ruta`, `respuestas` FROM defaultdb.entrevistas WHERE `id` = " + ID_userS + ";"
+diasAesperar="5";
+let sqlVideo = "SELECT `aplicar_convocatorias_id`,`preguntasRes` FROM defaultdb.entrevistas WHERE `ruta` LIKE '/mnt/entrevistavirtual/' AND  DATE(`fecha`) <= CURDATE()-"+diasAesperar+" ;"
+con.query(sqlVideo, async function (err, result){
+  if(err) console.log(err); 
+  for(index in result){
+    var listaVideos=[];
+    var id_=result[index]["aplicar_convocatorias_id"];
+    var numPreguntas=result[index]["preguntasRes"];
+    for(var i= 1;i<numPreguntas+1;i++  ){
+      ruta="/mnt/entrevistavirtual/"+id_+"_"+i;
+      listaVideos.push(ruta);
+      
+    }
+    console.log(listaVideos)
+    console.log(result[index]["aplicar_convocatorias_id"])
+  };
+})
+
+
 //       con.query(sqlVideo, function (err, result) {
 //         if (err) {
 //           errores(res, err400);
