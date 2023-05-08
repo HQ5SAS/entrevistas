@@ -84,7 +84,7 @@ class SFTPClient {
 
   //* Open the connection
   const client = new SFTPClient();
-  const sftpSSHKey = fs.readFileSync('./mnt/entrevistavirtual/');
+  const sftpSSHKey = fs.readFileSync('./www/entrevistaVirtHQ5/');
   await client.connect({
     host: '201.184.98.75',
     port: '22',
@@ -97,7 +97,7 @@ class SFTPClient {
   // localFile="/mnt/entrevistavirtual/";
   var video="3960020000012264857_1.mp4"
   //* Upload local file to remote file
-  await client.uploadFile(video, "./www/entrevistaVirtHQ5/remote.mp4");
+  await client.uploadFile("/mnt/entrevistavirtual/"+video, ".remote.mp4");
 
 
   //* Close the connection
