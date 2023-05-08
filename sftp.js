@@ -97,7 +97,7 @@ class SFTPClient {
   // localFile="/mnt/entrevistavirtual/";
   var video="3960020000012264857_1.mp4"
   //* Upload local file to remote file
-  await client.uploadFile("/mnt/entrevistavirtual/"+video, "./www/entrevistaVirtHQ5/remote.mp4");
+  await client.uploadFile("/mnt/entrevistavirtual/"+video, "./transfdhq5/remote.mp4");
 
 
   //* Close the connection
