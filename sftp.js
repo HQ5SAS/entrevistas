@@ -77,15 +77,6 @@ class SFTPClient {
     }
   }
 
-
-  async deleteFile(remoteFile) {
-    console.log(`Deleting ${remoteFile}`);
-    try {
-      await this.client.delete(remoteFile);
-    } catch (err) {
-      console.error('Deleting failed:', err);
-    }
-  }
 }
 
 (async () => {
@@ -108,8 +99,6 @@ class SFTPClient {
   //* Upload local file to remote file
   await client.uploadFile("./mnt/entrevistavirtual/"+video, "./www/entrevistaVirtHQ5/remote.mp4");
 
-  //* Delete remote file
-  await client.deleteFile("./transfdhq5/remote.txt");
 
   //* Close the connection
   await client.disconnect();
