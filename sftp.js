@@ -2,6 +2,7 @@
 let Client = require('ssh2-sftp-client');
 const fs = require('fs');
 const { exportsDB } = require("./db");
+const { count } = require('console');
 const con = exportsDB();
 
 // ID_userS="3960020000112264857"
@@ -14,32 +15,35 @@ con.query(sqlVideo, async function (err, result){
     var id_=result[index]["aplicar_convocatorias_id"];
     var numPreguntas=result[index]["preguntasRes"];
     for(var i= 1;i<numPreguntas+1;i++  ){
-      ruta="/mnt/entrevistavirtual/"+id_+"_"+i;
+      ruta="/mnt/entrevistavirtual/"+id_+"_"+i+".mp4";
       listaVideos.push(ruta);
+      try{
+        await client.uploadFile(ruta, "./transfdhq5/remote.mp4");
+      }
+      catch(err){
+        console.log(err)
+      }
+
       
     }
     console.log(listaVideos)
     console.log(result[index]["aplicar_convocatorias_id"])
   };
 })
+ listTest=["/mnt/entrevistavirtual/3960020000112264857_1.mp4", "/mnt/entrevistavirtual/3960020000112264857_2.mp4","/mnt/entrevistavirtual/3960020000112264857_3.mp4" ];
+var count=0;
+idTest="3960020000112264857";
+for (route_ in listTest){
+  count++
+  try{
+    await client.uploadFile(route_ , "./transfdhq5/"+idTest+"_"+count+".mp4");
+  }
+  catch(err){
+    console.log(err)
+  }
+}
 
 
-//       con.query(sqlVideo, function (err, result) {
-//         if (err) {
-//           errores(res, err400);
-//         }
-//         else {
-//           try {
-//             ruta=result[0]["ruta"]
-//             preguntasRes=result[0]["preguntasRes"]
-
-//           }
-//           catch (err) {
-//             errores(res, err400);
-//             console.log(err);
-//           }
-//         }
-//       });
 
 // var sql = "UPDATE `entrevistas` SET `ruta`= '" + id + "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
 // try {
@@ -53,19 +57,7 @@ con.query(sqlVideo, async function (err, result){
 //   resSQL = error;
 // }
 
-// //------------------------------------------------------------------
-// const http = require('http'); // or 'https' for https:// URLs
 
-// const file = fs.createWriteStream("file.jpg");
-// const reqeust = http.get("http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg", function(response) {
-//    response.pipe(file);
-
-//    // after download completed close filestream
-//    file.on("finish", () => {
-//        file.close();
-//        console.log("Download Completed");
-//    });
-// });
 // //-----------------------------------------
 
 class SFTPClient {
@@ -113,11 +105,11 @@ class SFTPClient {
   //-----
   // remoteFile="/www/entrevistaVirtHQ5";
   // localFile="/mnt/entrevistavirtual/";
-  var video="3960020000012264857_1.mp4"
+  //var video="3960020000012264857_1.mp4"
   //* Upload local file to remote file
-  await client.uploadFile("/mnt/entrevistavirtual/"+video, "./transfdhq5/remote.mp4");
+  //await client.uploadFile("/mnt/entrevistavirtual/"+video, "./transfdhq5/remote.mp4");
 
 
   //* Close the connection
-  await client.disconnect();
+  //await client.disconnect();
 })();
