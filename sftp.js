@@ -6,27 +6,58 @@ const { count } = require('console');
 const con = exportsDB();
 
 // ID_userS="3960020000112264857"
+//días que se van a dejar desde que se grabó la entrevista para cambiar de ubicación del archivo 
 diasAesperar="5";
+//Query par buscar registros con la ruta de digital, validando que la fecha sea anterior a hoy hace los "días a esperar"
 let sqlVideo = "SELECT `aplicar_convocatorias_id`,`preguntasRes` FROM defaultdb.entrevistas WHERE `ruta` LIKE '/mnt/entrevistavirtual/' AND  DATE(`fecha`) <= CURDATE()-"+diasAesperar+" ;"
+//ejecución de query
 con.query(sqlVideo, async function (err, result){
+  //si toma error imprimir en consola
   if(err) console.log(err); 
-  for(index in result){
-    var listaVideos=[];
-    var id_=result[index]["aplicar_convocatorias_id"];
-    var numPreguntas=result[index]["preguntasRes"];
-    for(var i= 1;i<numPreguntas+1;i++  ){
-      ruta="/mnt/entrevistavirtual/"+id_+"_"+i+".mp4";
-      listaVideos.push(ruta);
-      // try{
-      //   await client.uploadFile(ruta, "./transfdhq5/remote.mp4");
+  //intentar proceso completo
+  try{
+  //para cada registro de entrevista que encontró identifique el id y la cantidad de preguntas almacenadas(preguntasRes)
+    for(index in result){
+      var listaVideos=[];
+      var id_=result[index]["aplicar_convocatorias_id"];
+      var numPreguntas=result[index]["preguntasRes"];
+      //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
+      for(var i= 1;i<numPreguntas+1;i++  ){
+        ruta="/mnt/entrevistavirtual/"+id_+"_"+i+".mp4";
+        listaVideos.push(ruta);
+        //Para cada ruta creada ejecutar clonacion de servidor digital Ocean a servidor físico HQ5
+        //routeHQ5L="./transfdhq5/"+id_+"_"+i+".mp4"
+        // try{
+        //   await client.uploadFile(ruta ,routeHQ5L);
+        // }
+        // catch(err){
+        //   console.log(err)
+        // }    
+      }
+      //actualizar ruta en SQL
+      // var sqlUpdate = "UPDATE `entrevistas` SET `ruta`= './transfdhq5/'  WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+      // con.query(sqlUpdate, function (err, result) {
+      //   if (err) console.log(err); 
+      //   console.log("video guardado en servidor físico");
+      // })
+      // //test imprimir en consola id's encontrados y listas de rutas videos generadas
+      console.log(listaVideos)
+      console.log(result[index]["aplicar_convocatorias_id"])
+      //Eliminar alrchivos de servidor Digita Ocean
+      // for(_ruta in listaVideos){
+      //   fs.unlink(_ruta, (err) => {
+      //     if (err) {
+      //       console.error(err)
+      //       return
+      //     }
+      //     console.log("eliminado:" + _ruta)
+      //   })
       // }
-      // catch(err){
-      //   console.log(err)
-      // }    
-    }
-    console.log(listaVideos)
-    console.log(result[index]["aplicar_convocatorias_id"])
-  };
+    };
+  }
+  catch(err){
+    console.log(err);
+  }
 })
  
 
