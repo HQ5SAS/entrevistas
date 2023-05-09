@@ -119,14 +119,22 @@ class SFTPClient {
     username: 'transfdhq5',
     password: 's*3/X26Qm'
   });
-  listTest=["/mnt/entrevistavirtual/3960020000012264857_1.mp4", "/mnt/entrevistavirtual/3960020000012264857_2.mp4","/mnt/entrevistavirtual/3960020000012264857_3.mp4" ];
+  listTest=["/mnt/entrevistavirtual/3960020000012264857_1.mp4" ];
   var countProcess=0;
   idTest="3960020000012264857";
   for (route_ in listTest){
     countProcess++
     try{
       console.log("llamado de función upload file")
-      await client.uploadFile(listTest[route_] , "./transfdhq5/"+idTest+"_"+countProcess+".mp4");
+      _ruta = listTest[route_];
+      await client.uploadFile( _ruta, "./transfdhq5/"+idTest+"_"+countProcess+".mp4").then(fs.unlink(_ruta, (err) => {
+            if (err) {
+              console.error(err)
+              return
+            }
+            console.log("eliminado:" + _ruta)
+          }))
+      
     }
     catch(err){
       console.log(err)
