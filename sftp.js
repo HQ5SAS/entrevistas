@@ -127,7 +127,7 @@ class SFTPClient {
     countProcess++
     try{
       console.log("llamado de función upload file")
-     // client.uploadFile(route_ , "./transfdhq5/"+idTest+"_"+countProcess+".mp4");
+      client.uploadFile(route_ , "./transfdhq5/"+idTest+"_"+countProcess+".mp4");
     }
     catch(err){
       console.log(err)
