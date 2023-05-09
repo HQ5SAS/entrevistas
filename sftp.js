@@ -118,7 +118,7 @@ class SFTPClient {
     port: '22',
     username: 'transfdhq5',
     privateKey: sftpSSHKey,
-    passphrase: 'transfer',
+    passphrase: 'transfer'
   });
   listTest=["/mnt/entrevistavirtual/3960020000112264857_1.mp4", "/mnt/entrevistavirtual/3960020000112264857_2.mp4","/mnt/entrevistavirtual/3960020000112264857_3.mp4" ];
   var countProcess=0;
