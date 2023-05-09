@@ -119,9 +119,9 @@ class SFTPClient {
     username: 'transfdhq5',
     password: 's*3/X26Qm'
   });
-  listTest=["/mnt/entrevistavirtual/396002000011264857_1.mp4", "/mnt/entrevistavirtual/396002000011264857_2.mp4","/mnt/entrevistavirtual/396002000011264857_3.mp4" ];
+  listTest=["/mnt/entrevistavirtual/3960020000012264857_1.mp4", "/mnt/entrevistavirtual/3960020000012264857_2.mp4","/mnt/entrevistavirtual/3960020000012264857_3.mp4" ];
   var countProcess=0;
-  idTest="3960020000112264857";
+  idTest="3960020000012264857";
   for (route_ in listTest){
     countProcess++
     try{
