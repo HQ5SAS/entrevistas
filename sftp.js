@@ -125,9 +125,15 @@ class SFTPClient {
   for (route_ in listTest){
     countProcess++
     try{
-      console.log("llamado de función upload file")
       _ruta = listTest[route_];
-      await client.uploadFile( _ruta, "./transfdhq5/"+idTest+"_"+countProcess+".mp4").then(fs.unlink(_ruta, (err) => {
+      archivoNombre="./transfdhq5/"+idTest+"_"+countProcess+".mp4";
+      
+      // promesaTraspaso= new Promise((resolve, reject) => {
+      //   await client.uploadFile( _ruta,archivoNombre );
+      // });
+
+
+      await client.uploadFile( _ruta,archivoNombre ).then(fs.unlink(_ruta, (err) => {
             if (err) {
               console.error(err)
               return
