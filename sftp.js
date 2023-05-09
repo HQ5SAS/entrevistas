@@ -112,7 +112,7 @@ class SFTPClient {
 
   //* Open the connection
   const client = new SFTPClient();
-  const sftpSSHKey = fs.readFileSync('./keyPath');
+  const sftpSSHKey = fs.readFileSync('./id_rsa');
   await client.connect({
     host: '201.184.98.75',
     port: '22',
