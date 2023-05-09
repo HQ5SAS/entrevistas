@@ -120,15 +120,14 @@ class SFTPClient {
     privateKey: sftpSSHKey,
     passphrase: 'transfer',
   });
-  //
   listTest=["/mnt/entrevistavirtual/3960020000112264857_1.mp4", "/mnt/entrevistavirtual/3960020000112264857_2.mp4","/mnt/entrevistavirtual/3960020000112264857_3.mp4" ];
   var countProcess=0;
   idTest="3960020000112264857";
-  for (x in listTest){
+  for (route_ in listTest){
     countProcess++
     try{
       console.log("llamado de función upload file")
-      client.uploadFile(listTest[x] , "./transfdhq5/"+idTest+"_"+countProcess+".mp4");
+     // client.uploadFile(route_ , "./transfdhq5/"+idTest+"_"+countProcess+".mp4");
     }
     catch(err){
       console.log(err)
