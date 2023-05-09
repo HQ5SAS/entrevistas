@@ -83,18 +83,18 @@ class SFTPClient {
     this.client = new Client();
   }
 //
-  // async connect(options) {
-  //   console.log(`Connecting to ${options.host}:${options.port}`);
-  //   try {
-  //     await this.client.connect(options);
-  //   } catch (err) {
-  //     console.log('Failed to connect:', err);
-  //   }
-  // }
+  async connect(options) {
+    console.log(`Connecting to ${options.host}:${options.port}`);
+    try {
+      await this.client.connect(options);
+    } catch (err) {
+      console.log('Failed to connect:', err);
+    }
+  }
 
-  // async disconnect() {
-  //   await this.client.end();
-  // }
+  async disconnect() {
+    await this.client.end();
+  }
 
   async uploadFile(localFile, remoteFile) {
     console.log(`Uploading ${localFile} to ${remoteFile} ...`);
