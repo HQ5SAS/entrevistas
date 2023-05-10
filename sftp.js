@@ -131,7 +131,7 @@ class SFTPClient {
       
       promesaTraspaso= new Promise((resolve, reject) => {
         try{
-         client.uploadFile( _ruta,archivoNombre );
+         await client.uploadFile( _ruta,archivoNombre );
          resolve();
         }
         catch(err){
