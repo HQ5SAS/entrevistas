@@ -132,7 +132,7 @@ class SFTPClient {
       promesaTraspaso= await new Promise((resolve, reject) => {
         try{
           client.uploadFile( _ruta,archivoNombre );
-         resolve();
+         resolve('almacenado');
         }
         catch(err){
           console.log(err);
@@ -149,7 +149,7 @@ class SFTPClient {
         }
       }
     
-      deleteVid.then(console.log("eliminado:" + _ruta),console.log("error en traspaso"))
+      promesaTraspaso.then(console.log("eliminado:" + _ruta),console.log("error en traspaso"))
         // fs.unlink(_ruta, (err) => {
         //     if (err) {
         //       console.error(err)
