@@ -51,7 +51,7 @@ class SFTPClient {
   });
 
   //días que se van a dejar desde que se grabó la entrevista para cambiar de ubicación del archivo 
-diasAesperar="5";
+diasAesperar="0";
 //Query par buscar registros con la ruta de digital, validando que la fecha sea anterior a hoy hace los "días a esperar"
 let sqlVideo = "SELECT `aplicar_convocatorias_id`,`preguntasRes` FROM defaultdb.entrevistas WHERE `ruta` LIKE '/mnt/entrevistavirtual/' AND  DATE(`fecha`) <= CURDATE()-"+diasAesperar+" ;"
 //ejecución de query
