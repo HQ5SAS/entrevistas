@@ -98,12 +98,8 @@ class SFTPClient {
 
   async uploadFile(localFile, remoteFile) {
     console.log(`Uploading ${localFile} to ${remoteFile} ...`);
-    try{
     await this.client.put(localFile, remoteFile);
-    }
-    catch(err){
-      console.log(err)
-    }
+    return ("done!")
   }
 
 }
@@ -129,23 +125,30 @@ class SFTPClient {
       _ruta = listTest[route_];
       archivoNombre="./transfdhq5/"+idTest+"_44.mp4";
 
-      async function getNum() {
-        const promise = new Promise(resolve =>resolve(client.uploadFile( _ruta,archivoNombre )));
+      await client.uploadFile( _ruta,archivoNombre )
+      await console.log(done)
+      // async function getNum() {
+      //   const promise = new Promise(resolve =>resolve(client.uploadFile( _ruta,archivoNombre )));
+      //   outp="";
+      // try{
+      //   const num = await promise;
       
-        const num = await promise;
+      //   console.log(num); // 👉️ 42
+      //   return num;
+      // }
+      // catch(err){
+      //   return(err)
+      // }
+       
+      // }
       
-        console.log(num); // 👉️ 42
-      
-        return num;
-      }
-      
-      getNum()
-        .then(num => {
-          console.log("done"); // 👉️ 42
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      // getNum()
+      //   .then(num => {
+      //     console.log("done"); // 👉️ 42
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
 
 
 
