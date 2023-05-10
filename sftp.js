@@ -99,7 +99,7 @@ class SFTPClient {
   async uploadFile(localFile, remoteFile) {
     console.log(`Uploading ${localFile} to ${remoteFile} ...`);
     try{
-      await this.client.put(localFile, remoteFile);
+    await this.client.put(localFile, remoteFile);
     }
     catch(err){
       console.log(err)
@@ -127,28 +127,28 @@ class SFTPClient {
     countProcess++
     try{
       _ruta = listTest[route_];
-      archivoNombre="./transfdhq5/"+idTest+"_"+countProcess+".mp4";
+      archivoNombre="./transfdhq5/"+idTest+"_4.mp4";
       
       await client.uploadFile( _ruta,archivoNombre );
-      //  new Promise((resolve, reject) => {
-      //   try{
-      //     client.uploadFile( _ruta,archivoNombre );
-      //    resolve('almacenado');
-      //   }
-      //   catch(err){
-      //     console.log(err);
-      //     reject();
-      //   }
-      // }).then(console.log("eliminado:" + _ruta),console.log("error en traspaso"));
+       new Promise((resolve, reject) => {
+        try{
+          client.uploadFile( _ruta,archivoNombre );
+         resolve('almacenado');
+        }
+        catch(err){
+          console.log(err);
+          reject();
+        }
+      }).then(console.log("eliminado:" + _ruta),console.log("error en traspaso"));
 
-      // async function deleteVid(){
-      //   try{
-      //     await promesaTraspaso
-      //   }
-      //   catch(err){
-      //     console.log(err)
-      //   }
-      // }
+      async function deleteVid(){
+        try{
+          await promesaTraspaso
+        }
+        catch(err){
+          console.log(err)
+        }
+      }
     
      // promesaTraspaso.then(console.log("eliminado:" + _ruta),console.log("error en traspaso"))
         // fs.unlink(_ruta, (err) => {
