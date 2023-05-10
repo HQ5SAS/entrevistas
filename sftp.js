@@ -60,6 +60,7 @@ await con.query(sqlVideo, async function (err, result){
   if(err) console.log(err); 
   //intentar proceso completo
   try{
+    console.log(result);
   //para cada registro de entrevista que encontró identifique el id y la cantidad de preguntas almacenadas(preguntasRes)
     for(index in result){
       var listaVideos=[];
