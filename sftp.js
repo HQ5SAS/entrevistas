@@ -98,7 +98,12 @@ class SFTPClient {
 
   async uploadFile(localFile, remoteFile) {
     console.log(`Uploading ${localFile} to ${remoteFile} ...`);
+    try{
     await this.client.put(localFile, remoteFile);
+    }
+    catch(err){
+      console.log(err)
+    }
   }
 
 }
