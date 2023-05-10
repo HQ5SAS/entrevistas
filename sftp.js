@@ -146,7 +146,7 @@ class SFTPClient {
               return
             }
             console.log("eliminado:" + _ruta)
-          }))
+          }), console.log("error en traspaso"))
       
     }
     catch(err){
