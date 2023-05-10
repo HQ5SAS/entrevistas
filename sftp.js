@@ -141,15 +141,15 @@ class SFTPClient {
       });
 
 
-      await promesaTraspaso.then(
+      await promesaTraspaso.then(console.log("eliminado:" + _ruta),console.log("error en traspaso"))
         // fs.unlink(_ruta, (err) => {
         //     if (err) {
         //       console.error(err)
         //       return
         //     }
-            console.log("eliminado:" + _ruta)
+          //  console.log("eliminado:" + _ruta)
          // })
-         , console.log("error en traspaso"))
+        // , console.log("error en traspaso"))
       
     }
     catch(err){
