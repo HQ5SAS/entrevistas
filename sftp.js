@@ -116,7 +116,7 @@ class SFTPClient {
     username: 'transfdhq5',
     password: 's*3/X26Qm'
   });
-  listTest=["/mnt/entrevistavirtual/3960020000012264857_44.mp4" ];
+  listTest=["/mnt/entrevistavirtual/3960020000012264857_4.mp4" ];
   var countProcess=0;
   idTest="3960020000012264857";
   for (route_ in listTest){
@@ -126,7 +126,7 @@ class SFTPClient {
       archivoNombre="./transfdhq5/"+idTest+"_44.mp4";
 
       await client.uploadFile( _ruta,archivoNombre )
-      await console.log(done)
+      await console.log("done")
       // async function getNum() {
       //   const promise = new Promise(resolve =>resolve(client.uploadFile( _ruta,archivoNombre )));
       //   outp="";
