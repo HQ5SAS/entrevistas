@@ -128,12 +128,19 @@ class SFTPClient {
       _ruta = listTest[route_];
       archivoNombre="./transfdhq5/"+idTest+"_"+countProcess+".mp4";
       
-      // promesaTraspaso= new Promise((resolve, reject) => {
-      //   await client.uploadFile( _ruta,archivoNombre );
-      // });
+      promesaTraspaso= new Promise((resolve, reject) => {
+        try{
+         client.uploadFile( _ruta,archivoNombre );
+         resolve();
+        }
+        catch(err){
+          console.log(err);
+          reject();
+        }
+      });
 
 
-      await client.uploadFile( _ruta,archivoNombre ).then(fs.unlink(_ruta, (err) => {
+      await promesaTraspaso.resolve().then(fs.unlink(_ruta, (err) => {
             if (err) {
               console.error(err)
               return
