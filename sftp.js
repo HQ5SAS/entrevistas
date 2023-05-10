@@ -54,7 +54,7 @@ class SFTPClient {
 diasAesperar="5";
 //Query par buscar registros con la ruta de digital, validando que la fecha sea anterior a hoy hace los "días a esperar"
 let sqlVideo = "SELECT `aplicar_convocatorias_id`,`preguntasRes` FROM defaultdb.entrevistas WHERE `ruta` LIKE '/mnt/entrevistavirtual/' AND  DATE(`fecha`) <= CURDATE()-"+diasAesperar+" ;"
-var sqlUpdate = "UPDATE `entrevistas` SET `ruta`= './transfdhq5/" + id + "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+var sqlUpdate = "UPDATE `entrevistas` SET `ruta`= './transfdhq5/" + id_ + "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
 //ejecución de query
 await con.query(sqlVideo, async function (err, result){
   //si toma error imprimir en consola
