@@ -115,7 +115,7 @@ class SFTPClient {
     username: 'transfdhq5',
     password: 's*3/X26Qm'
   });
-  listTest=["/mnt/entrevistavirtual/3960020000012264857_3.mp4" ];
+  listTest=["/mnt/entrevistavirtual/3960020000012264857_4.mp4" ];
   var countProcess=0;
   idTest="3960020000012264857";
   for (route_ in listTest){
@@ -136,13 +136,15 @@ class SFTPClient {
       });
 
 
-      await promesaTraspaso.then(fs.unlink(_ruta, (err) => {
-            if (err) {
-              console.error(err)
-              return
-            }
+      await promesaTraspaso.then(
+        // fs.unlink(_ruta, (err) => {
+        //     if (err) {
+        //       console.error(err)
+        //       return
+        //     }
             console.log("eliminado:" + _ruta)
-          }), console.log("error en traspaso"))
+         // })
+         , console.log("error en traspaso"))
       
     }
     catch(err){
