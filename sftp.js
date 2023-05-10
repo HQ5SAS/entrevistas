@@ -140,7 +140,7 @@ class SFTPClient {
       });
 
 
-      await promesaTraspaso.resolve().then(fs.unlink(_ruta, (err) => {
+      await promesaTraspaso.then(fs.unlink(_ruta, (err) => {
             if (err) {
               console.error(err)
               return
