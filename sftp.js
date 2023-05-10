@@ -140,8 +140,15 @@ class SFTPClient {
         }
       });
 
-
-      promesaTraspaso.then(console.log("eliminado:" + _ruta),console.log("error en traspaso"))
+      async function deleteVid(){
+        try{
+          await promesaTraspaso
+        }
+        catch(err){
+          console.log(err)
+        }
+      }
+      await deleteVid.then(console.log("eliminado:" + _ruta),console.log("error en traspaso"))
         // fs.unlink(_ruta, (err) => {
         //     if (err) {
         //       console.error(err)
