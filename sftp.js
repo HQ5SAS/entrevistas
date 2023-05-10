@@ -73,7 +73,7 @@ await con.query(sqlVideo, async function (err, result){
         //Para cada ruta creada ejecutar clonacion de servidor digital Ocean a servidor físico HQ5
         routeHQ5L="./transfdhq5/"+id_+"_"+i+".mp4"
         try{
-          archivoNombre="./transfdhq5/"+idTest+"_44.mp4";  
+          archivoNombre="./transfdhq5/"+idTest+"_"+i+".mp4";  
           try{
             await client.uploadFile( ruta,routeHQ5L )
            //Eliminar alrchivos de servidor Digita Ocean
