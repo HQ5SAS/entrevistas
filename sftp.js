@@ -129,9 +129,9 @@ class SFTPClient {
       _ruta = listTest[route_];
       archivoNombre="./transfdhq5/"+idTest+"_"+countProcess+".mp4";
       
-      promesaTraspaso= new Promise((resolve, reject) => {
+      promesaTraspaso= await new Promise((resolve, reject) => {
         try{
-         await client.uploadFile( _ruta,archivoNombre );
+          client.uploadFile( _ruta,archivoNombre );
          resolve();
         }
         catch(err){
