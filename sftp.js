@@ -116,7 +116,7 @@ class SFTPClient {
     username: 'transfdhq5',
     password: 's*3/X26Qm'
   });
-  listTest=["/mnt/entrevistavirtual/3960020000012264857_4.mp4" ];
+  listTest=["/mnt/entrevistavirtual/3960020000012264857_44.mp4" ];
   var countProcess=0;
   idTest="3960020000012264857";
   for (route_ in listTest){
@@ -125,67 +125,22 @@ class SFTPClient {
       _ruta = listTest[route_];
       archivoNombre="./transfdhq5/"+idTest+"_44.mp4";
 
-      await client.uploadFile( _ruta,archivoNombre )
-      await console.log("done")
-      // async function getNum() {
-      //   const promise = new Promise(resolve =>resolve(client.uploadFile( _ruta,archivoNombre )));
-      //   outp="";
-      // try{
-      //   const num = await promise;
+      try{
+        await client.uploadFile( _ruta,archivoNombre )
+        await fs.unlink(_ruta, (err) => {
+              if (err) {
+                console.error(err)
+                return
+              }
+             console.log("eliminado:" + _ruta)
+           })
+        await console.log("done")
+      }
+      catch(err){
+        console.log("no borrado ni almacenado: " +err)
+      }
       
-      //   console.log(num); // 👉️ 42
-      //   return num;
-      // }
-      // catch(err){
-      //   return(err)
-      // }
-       
-      // }
-      
-      // getNum()
-      //   .then(num => {
-      //     console.log("done"); // 👉️ 42
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
-
-
-
-
-
-
-      
-      
-      //  await new Promise((resolve, reject) => {
-      //   try{
-      //     client.uploadFile( _ruta,archivoNombre );
-      //    resolve('almacenado');
-      //   }
-      //   catch(err){
-      //     console.log(err);
-      //     reject();
-      //   }
-      // }).then(console.log("eliminado:" + _ruta),console.log("error en traspaso"));
-
-      // async function deleteVid(){
-      //   try{
-      //     await promesaTraspaso
-      //   }
-      //   catch(err){
-      //     console.log(err)
-      //   }
-      // }
     
-     // promesaTraspaso.then(console.log("eliminado:" + _ruta),console.log("error en traspaso"))
-        // fs.unlink(_ruta, (err) => {
-        //     if (err) {
-        //       console.error(err)
-        //       return
-        //     }
-          //  console.log("eliminado:" + _ruta)
-         // })
-        // , console.log("error en traspaso"))
       
     }
     catch(err){
