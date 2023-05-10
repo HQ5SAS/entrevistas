@@ -129,8 +129,7 @@ class SFTPClient {
       _ruta = listTest[route_];
       archivoNombre="./transfdhq5/"+idTest+"_4.mp4";
       
-      await client.uploadFile( _ruta,archivoNombre );
-       new Promise((resolve, reject) => {
+       await new Promise((resolve, reject) => {
         try{
           client.uploadFile( _ruta,archivoNombre );
          resolve('almacenado');
