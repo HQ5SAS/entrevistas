@@ -3,7 +3,7 @@ const { exportsDB } = require("./db");
 const con = exportsDB();
 
 //let sqlVideo = "SELECT aplicar_convocatorias_id, 'pregunta1','pregunta2','pregunta3','pregunta4','pregunta5','pregunta6','pregunta7' FROM defaultdb.entrevistas where ruta IS NULL OR ruta = ''"
-let sqlVideo = "SELECT aplicar_convocatorias_id, `aplicar_convocatorias_id`, `pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,`pregunta6`,`pregunta7` FROM defaultdb.entrevistas where (ruta IS NULL OR ruta = '') AND aplicar_convocatorias_id= '396034840020119398'"
+let sqlVideo = "SELECT aplicar_convocatorias_id, `aplicar_convocatorias_id`, `pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,`pregunta6`,`pregunta7` FROM defaultdb.entrevistas where aplicar_convocatorias_id= '396034840020119398'"
 
 const ruta="/mnt/entrevistavirtual/";
 
@@ -15,12 +15,13 @@ con.query(sqlVideo, async function (err, result){
         console.log(id_)
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
        try{
-        for(var i= 1;i< 8;i++  ){
+        for(var i= 1;i< 2;i++  ){
             
             var base64Video_ = result[index]["pregunta"+i.toString()];
             console.log(typeof(base64Video_))
             base64Video_=JSON.stringify(base64Video_)
             console.log(typeof(base64Video_))
+            console.log(base64Video_)
             console.log("pregunta"+i.toString())
             if(base64Video_ != "NULL"){
                 Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
