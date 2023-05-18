@@ -3,7 +3,7 @@ const { exportsDB } = require("./db");
 const con = exportsDB();
 
 //let sqlVideo = "SELECT aplicar_convocatorias_id, 'pregunta1','pregunta2','pregunta3','pregunta4','pregunta5','pregunta6','pregunta7' FROM defaultdb.entrevistas where ruta IS NULL OR ruta = ''"
-let sqlVideo = "SELECT * FROM defaultdb.entrevistas where (ruta IS NULL OR ruta = '') AND aplicar_convocatorias_id= '396034840020119398'"
+let sqlVideo = "SELECT aplicar_convocatorias_id, `aplicar_convocatorias_id`, `pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,`pregunta6`,`pregunta7` FROM defaultdb.entrevistas where (ruta IS NULL OR ruta = '') AND aplicar_convocatorias_id= '396034840020119398'"
 
 const ruta="/mnt/entrevistavirtual/";
 
@@ -20,21 +20,21 @@ con.query(sqlVideo, async function (err, result){
             var base64Video_ = result[index]["pregunta1"];
             console.log("base64: "+ base64Video_);
             console.log("pregunta"+i.toString())
-            // if(base64Video_ != "NULL"){
-            //     Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
-            //     Video_toVolume = Video_toVolume.replace(/ /g, '+'); // 
+            if(base64Video_ != "NULL"){
+                Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
+                Video_toVolume = Video_toVolume.replace(/ /g, '+'); // 
             
-            //     fs.writeFile(`/mnt/entrevistavirtual/`+id_+"_"+i+".mp4" , Video_toVolume, 'base64', function(err) {
-            //         console.log(err);
-            //     });
-            // }
+                fs.writeFile(`/mnt/entrevistavirtual/`+id_+"_"+i+".mp4" , Video_toVolume, 'base64', function(err) {
+                    console.log(err);
+                });
+            }
           
         }
-        // var sqlUpdate = "UPDATE `entrevistas` SET `ruta`= '"+ ruta+ "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
-        // await con.query(sqlUpdate, function (err, result) {
-        //       if (err) throw err;
-        //       console.log("video guardado en db");
-        //     });
+        var sqlUpdate = "UPDATE `entrevistas` SET `ruta`= '"+ ruta+ "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+        await con.query(sqlUpdate, function (err, result) {
+              if (err) throw err;
+              console.log("video guardado en db");
+            });
        }
        catch(err){
         console.log(err);
