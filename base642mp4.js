@@ -16,7 +16,7 @@ con.query(sqlVideo, async function (err, result){
        try{
         for(var i= 1;i< 8;i++  ){
             
-            var base64Video_ = result[0]["pregunta"+toString(i)];
+            var base64Video_ = result[index]["pregunta"+toString(i)];
             console.log(base64Video_);
             console.log("pregunta"+toString(i))
             if(base64Video_ != "NULL"){
