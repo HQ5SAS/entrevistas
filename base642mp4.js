@@ -16,8 +16,8 @@ con.query(sqlVideo, async function (err, result){
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
        try{
         for(var i= 1;i< 2;i++  ){
-            
-            var base64Video_ = result[index]["pregunta"+i.toString()];
+            var pregunta="pregunta"+i.toString()
+            var base64Video_ = result[index][pregunta];
             console.log(typeof(base64Video_))
            // base64Video_=JSON.stringify(base64Video_)
             //console.log(typeof(base64Video_))
