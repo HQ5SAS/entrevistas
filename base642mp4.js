@@ -21,7 +21,7 @@ con.query(sqlVideo, async function (err, result){
             console.log(typeof(base64Video_))
            // base64Video_=JSON.stringify(base64Video_)
             //console.log(typeof(base64Video_))
-            //console.log(base64Video_)
+            console.log(base64Video_)
             console.log("pregunta"+i)
             // if(base64Video_ != "NULL"){
             //     Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
