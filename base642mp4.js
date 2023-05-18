@@ -17,12 +17,12 @@ con.query(sqlVideo, async function (err, result){
        try{
         for(var i= 1;i< 2;i++  ){
             
-            var base64Video_ = result[index]["pregunta"+i.toString()];
+            var base64Video_ = result[index]["pregunta"+i];
             console.log(typeof(base64Video_))
             // base64Video_=JSON.stringify(base64Video_)
             // console.log(typeof(base64Video_))
             console.log(base64Video_)
-            console.log("pregunta"+i.toString())
+            console.log("pregunta"+i)
             if(base64Video_ != "NULL"){
                 Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
                 Video_toVolume = Video_toVolume.replace(/ /g, '+'); // 
