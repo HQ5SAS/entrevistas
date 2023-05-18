@@ -15,19 +15,17 @@ con.query(sqlVideo, async function (err, result){
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
        try{
         for(var i= 1;i< 8;i++  ){
+            
             var base64Video_ = result[0]["pregunta"+toString(i)];
+            console.log(base64Video_);
+            console.log("pregunta"+toString(i))
             if(base64Video_ != "NULL"){
-                try{
-                    Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
-                    Video_toVolume = Video_toVolume.replace(/ /g, '+'); // 
-                
-                    fs.writeFile(`/mnt/entrevistavirtual/`+id_+"_"+i+".mp4" , Video_toVolume, 'base64', function(err) {
-                        console.log(err);
-                    });
-                  }
-                  catch(err){
-                    console.log(err)
-                  }
+                Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
+                Video_toVolume = Video_toVolume.replace(/ /g, '+'); // 
+            
+                fs.writeFile(`/mnt/entrevistavirtual/`+id_+"_"+i+".mp4" , Video_toVolume, 'base64', function(err) {
+                    console.log(err);
+                });
             }
           
         }
