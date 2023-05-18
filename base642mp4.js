@@ -3,7 +3,7 @@ const { exportsDB } = require("./db");
 const con = exportsDB();
 
 //let sqlVideo = "SELECT aplicar_convocatorias_id, 'pregunta1','pregunta2','pregunta3','pregunta4','pregunta5','pregunta6','pregunta7' FROM defaultdb.entrevistas where ruta IS NULL OR ruta = ''"
-let sqlVideo = "SELECT `aplicar_convocatorias_id`, `pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,`pregunta6`,`pregunta7` FROM defaultdb.entrevistas where aplicar_convocatorias_id= '396034840020119398'"
+let sqlVideo = "SELECT `aplicar_convocatorias_id`, `pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,`pregunta6`,`pregunta7` FROM defaultdb.entrevistas where ruta IS NULL OR ruta = ''"
 
 const ruta="/mnt/entrevistavirtual/";
 
@@ -18,10 +18,8 @@ con.query(sqlVideo, async function (err, result){
         for(var i= 1;i< 8;i++  ){
             var pregunta="pregunta"+i.toString()
             var base64Video_ = result[index][pregunta];
-            console.log(typeof(base64Video_))
            // base64Video_=JSON.stringify(base64Video_)
             //console.log(typeof(base64Video_))
-            console.log("pregunta"+i)
             if(typeof(base64Video_) != "object"){
                 Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
                 Video_toVolume = Video_toVolume.replace(/ /g, '+'); // 
