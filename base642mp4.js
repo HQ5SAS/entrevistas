@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { exportsDB } = require("./db");
+const con = exportsDB();
 
 //let sqlVideo = "SELECT aplicar_convocatorias_id, 'pregunta1','pregunta2','pregunta3','pregunta4','pregunta5','pregunta6','pregunta7' FROM defaultdb.entrevistas where ruta IS NULL OR ruta = ''"
 let sqlVideo = "SELECT aplicar_convocatorias_id, 'pregunta1','pregunta2','pregunta3','pregunta4','pregunta5','pregunta6','pregunta7' FROM defaultdb.entrevistas where (ruta IS NULL OR ruta = '') AND aplicar_convocatorias_id= '396034840020119398'"
