@@ -13,8 +13,9 @@ con.query(sqlVideo, async function (err, result){
     for(index in result){
         var id_=result[index]["aplicar_convocatorias_id"];
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
+       try{
         for(var i= 1;i< 8;i++  ){
-            var base64Video_ = result[index]["pregunta"+toString(i)];
+            var base64Video_ = result[0]["pregunta"+toString(i)];
             if(base64Video_ != "NULL"){
                 try{
                     Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
@@ -34,8 +35,12 @@ con.query(sqlVideo, async function (err, result){
         await con.query(sqlUpdate, function (err, result) {
               if (err) throw err;
               console.log("video guardado en db");
-              resSQL = "succesfull query";
             });
+       }
+       catch(err){
+        console.log(err);
+       }
+        
   
       };
 })
