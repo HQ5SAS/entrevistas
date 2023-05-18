@@ -12,13 +12,15 @@ con.query(sqlVideo, async function (err, result){
     if(err) console.log(err); 
     for(index in result){
         var id_=result[index]["aplicar_convocatorias_id"];
+        console.log(id_)
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
        try{
         for(var i= 1;i< 8;i++  ){
             
             var base64Video_ = result[index]["pregunta"+toString(i)];
             console.log(base64Video_);
-            console.log("pregunta"+toString(i))
+            console.log("iterance: "+i )
+            console.log("pregunta"+i.toString())
             if(base64Video_ != "NULL"){
                 Video_toVolume = base64Video_.replace(/^data:(.*?);base64,/, ""); // 
                 Video_toVolume = Video_toVolume.replace(/ /g, '+'); // 
