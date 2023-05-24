@@ -6,7 +6,7 @@ const { spawn, ChildProcess } = require("child_process");
 let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where requisicion IS NULL OR requisicion = ''"
 
 
-async function python_getInfo(content, lista) {
+async function python_getInfo(content) {
 
     //subproceso python fn
     pythonProcess = spawn("python3", ["./zohoGetInf.py"]);
@@ -21,10 +21,8 @@ async function python_getInfo(content, lista) {
     })
 
     pythonProcess.stdout.on("end", function () {
-    listaP = allReplace(python_response)
-    lista(listaP)
+    list_ = python_response
     });
-    pythonProcess.stdin.setEncoding = 'utf-8';
     pythonProcess.stdin.write(JSON.stringify(content));
     pythonProcess.stdin.end();
 
@@ -39,7 +37,7 @@ con.query(sqlVideo, async function (err, result){
         //get id info
         python_getInfo({ "key": "contenido", "id": id_ });
         try{
-            requi = JSON.parse(list);
+            requi = JSON.parse(list_);
              cargo = requi.pop();   
              try{
                 var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
