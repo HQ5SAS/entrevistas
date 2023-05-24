@@ -21,7 +21,7 @@ async function python_getInfo(content) {
     })
 
     pythonProcess.stdout.on("end", function () {
-    list_ = python_response
+    return python_response
     });
     pythonProcess.stdin.write(JSON.stringify(content));
     pythonProcess.stdin.end();
@@ -35,7 +35,7 @@ con.query(sqlVideo, async function (err, result){
         var id_=result[index]["aplicar_convocatorias_id"];
         console.log(id_)
         //get id info
-        python_getInfo({ "key": "contenido", "id": id_ });
+        list_= python_getInfo({ "key": "contenido", "id": id_ });
         try{
             requi = JSON.parse(list_);
              cargo = requi.pop();   
