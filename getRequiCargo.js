@@ -37,7 +37,7 @@ con.query(sqlVideo, async function (err, result){
         var id_=result[index]["aplicar_convocatorias_id"];
         console.log(id_)
         //get id info
-        python_getInfo({ "key": "contenido", "id": id_ }, loadPage);
+        python_getInfo({ "key": "contenido", "id": id_ });
         try{
             requi = JSON.parse(list);
              cargo = requi.pop();   
