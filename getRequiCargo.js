@@ -7,7 +7,7 @@ const { spawn, ChildProcess } = require("child_process");
 let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where aplicar_convocatorias_id = '3960020000075914707'"
 
 
-function python_getInfo(content) {
+async function python_getInfo(content) {
 
     //subproceso python fn
     pythonProcess = spawn("python3", ["./zohoGetInf.py"]);
@@ -39,10 +39,10 @@ con.query(sqlVideo, async function (err, result){
         //get id info    
         function proceso(list_){
             try{
-                requi = list_;
+                cargo = list_;
                 console.log(requi)
                 // console.log("JSONParse: "+ requi)
-                cargo = requi.pop();   
+                requi = requi.pop();   
                 try{
                     var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
                     con.query(sqlUpdate, function (err, result) {
@@ -58,7 +58,7 @@ con.query(sqlVideo, async function (err, result){
                 console.log(err);
         }
         }
-        proceso(python_getInfo({ "key": "contenido", "id": id_ }));
+        proceso( await python_getInfo({ "key": "contenido", "id": id_ }));
         
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
        
