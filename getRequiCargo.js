@@ -8,27 +8,28 @@ let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas whe
 
 var x=""
 function python_getInfo(content) {
-
-    //subproceso python fn
-    pythonProcess = spawn("python3", ["./zohoGetInf.py"]);
-    var python_response = "";
-
-    pythonProcess.stdout.on("data", function (data) {
-    python_response += data
+    return new Promise((resolve, reject) => {
+      const pythonProcess = spawn("python3", ["./zohoGetInf.py"]);
+      let python_response = "";
+  
+      pythonProcess.stdout.on("data", function (data) {
+        python_response += data;
+      });
+  
+      pythonProcess.stderr.on("data", function (data) {
+        console.error(data.toString());
+        reject(data.toString());
+      });
+  
+      pythonProcess.stdout.on("end", function () {
+        console.log(python_response);
+        resolve(python_response);
+      });
+  
+      pythonProcess.stdin.write(JSON.stringify(content));
+      pythonProcess.stdin.end();
     });
-
-    pythonProcess.stderr.on('data', function (data) {
-    console.error(data.toString());
-    })
-
-    pythonProcess.stdout.on("end", function () {
-    console.log(python_response)
-    
-    });
-    pythonProcess.stdin.write(JSON.stringify(content));
-    pythonProcess.stdin.end();
-    this.x=python_response
-}
+  }
 
 con.query(sqlVideo, async function (err, result){
     //si toma error imprimir en consola
@@ -38,8 +39,8 @@ con.query(sqlVideo, async function (err, result){
         console.log(id_)
         //get id info    
         function proceso(){
-            python_getInfo({ "key": "contenido", "id": id_ });
-            cargo=x;
+            
+            cargo=python_getInfo({ "key": "contenido", "id": id_ });;
             setTimeout(() => {
                 try{
                     console.log("cargo: "+cargo);
