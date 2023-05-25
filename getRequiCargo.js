@@ -38,25 +38,28 @@ con.query(sqlVideo, async function (err, result){
         console.log(id_)
         //get id info    
         function proceso(list_){
-            try{
-                cargo = list_;
-                console.log(cargo)
-                // console.log("JSONParse: "+ requi)
-                requi = cargo.pop();   
+            setTimeout(() => {
                 try{
-                    var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
-                    con.query(sqlUpdate, function (err, result) {
-                        if (err) throw err;
-                        console.log("guardado en db");
-                        });
+                    cargo = list_;
+                    console.log(cargo)
+                    // console.log("JSONParse: "+ requi)
+                    requi = cargo.pop();   
+                    try{
+                        var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+                        con.query(sqlUpdate, function (err, result) {
+                            if (err) throw err;
+                            console.log("guardado en db");
+                            });
+                    }
+                    catch(err){
+                        console.log(err);
+                    } 
                 }
                 catch(err){
                     console.log(err);
-                } 
             }
-            catch(err){
-                console.log(err);
-        }
+            }, 3000);
+            
         }
         proceso( await python_getInfo({ "key": "contenido", "id": id_ }));
         
