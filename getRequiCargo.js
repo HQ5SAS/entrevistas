@@ -44,7 +44,6 @@ con.query(sqlVideo, async function (err, result){
                 // Hacer algo con la respuesta de Python
                 console.log(response);
                 try{
-                    console.log("cargo: "+cargo);
                     // console.log("JSONParse: "+ requi)
                     //requi = cargo.pop();   
                     try{
