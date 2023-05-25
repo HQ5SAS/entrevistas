@@ -40,6 +40,7 @@ con.query(sqlVideo, async function (err, result){
         function proceso(list_){
             try{
                 requi = list_;
+                console.log(requi)
                 // console.log("JSONParse: "+ requi)
                 cargo = requi.pop();   
                 try{
