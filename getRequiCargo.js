@@ -38,7 +38,7 @@ con.query(sqlVideo, async function (err, result){
         //get id info
         list_= python_getInfo({ "key": "contenido", "id": id_ });
         try{
-            requi = JSON.parse(list_);
+            requi = list_;
              cargo = requi.pop();   
              try{
                 var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
