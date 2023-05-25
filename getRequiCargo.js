@@ -23,11 +23,11 @@ function python_getInfo(content) {
 
     pythonProcess.stdout.on("end", function () {
     console.log(python_response)
-    return python_response
+    
     });
     pythonProcess.stdin.write(JSON.stringify(content));
     pythonProcess.stdin.end();
-
+    return python_response
 }
 
 con.query(sqlVideo, async function (err, result){
