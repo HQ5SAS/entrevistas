@@ -64,6 +64,6 @@ con.query(sqlVideo, async function (err, result) {
     await proceso();
 
     // Esperar 3 segundos antes de continuar con el siguiente ID
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 6000));
   }
 });
