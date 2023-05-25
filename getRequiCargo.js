@@ -44,7 +44,7 @@ con.query(sqlVideo, async function (err, result){
                 cargo = requi.pop();   
                 try{
                     var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
-                    await con.query(sqlUpdate, function (err, result) {
+                    con.query(sqlUpdate, function (err, result) {
                         if (err) throw err;
                         console.log("guardado en db");
                         });
