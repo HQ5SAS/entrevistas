@@ -40,12 +40,10 @@ con.query(sqlVideo, async function (err, result){
         function proceso(list_){
             setTimeout(() => {
                 try{
-                    cargo = list_;
-                    console.log(cargo)
                     // console.log("JSONParse: "+ requi)
                     //requi = cargo.pop();   
                     try{
-                        var sqlUpdate = "UPDATE `entrevistas` SET `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+                        var sqlUpdate = "UPDATE `entrevistas` SET `cargo` = '"+list_+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
                         con.query(sqlUpdate, function (err, result) {
                             if (err) throw err;
                             console.log("guardado en db");
@@ -58,10 +56,10 @@ con.query(sqlVideo, async function (err, result){
                 catch(err){
                     console.log(err);
             }
-            }, 3000);
+            }, 4000);
             
         }
-        proceso( await python_getInfo({ "key": "contenido", "id": id_ }));
+        proceso( python_getInfo({ "key": "contenido", "id": id_ }));
         
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
        
