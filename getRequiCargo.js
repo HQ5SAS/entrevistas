@@ -39,8 +39,8 @@ con.query(sqlVideo, async function (err, result){
         //get id info    
         function proceso(list_){
             try{
-                requi = JSON.parse(list_);
-                console.log("JSONParse: "+ requi)
+                requi = list_;
+                // console.log("JSONParse: "+ requi)
                 cargo = requi.pop();   
                 try{
                     var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
