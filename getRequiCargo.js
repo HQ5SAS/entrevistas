@@ -7,7 +7,7 @@ const { spawn, ChildProcess } = require("child_process");
 let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where aplicar_convocatorias_id = '3960020000075914707'"
 
 
-async function python_getInfo(content) {
+function python_getInfo(content) {
 
     //subproceso python fn
     pythonProcess = spawn("python3", ["./zohoGetInf.py"]);
