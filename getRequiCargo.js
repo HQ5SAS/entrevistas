@@ -33,11 +33,10 @@ con.query(sqlVideo, async function (err, result){
     //si toma error imprimir en consola
     if(err) console.log(err); 
     for(index in result){
-        var id_=result[index]["aplicar_convocatorias_id"];
-        console.log(id_)
         //get id info    
         function proceso(){
-            
+            var id_=result[index]["aplicar_convocatorias_id"];
+             console.log(id_)
             python_getInfo({ "key": "contenido", "id": id_ }).then((response) => {
                 // Hacer algo con la respuesta de Python
                 console.log(response);
@@ -55,11 +54,7 @@ con.query(sqlVideo, async function (err, result){
 
         }
         proceso();
-        
-        //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
-       
-        
-  
+
       };
 })
 
