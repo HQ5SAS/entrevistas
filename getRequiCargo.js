@@ -38,12 +38,14 @@ con.query(sqlVideo, async function (err, result){
         console.log(id_)
         //get id info    
         function proceso(list_){
+            cargo=list_;
+            console.log(cargo);
             setTimeout(() => {
                 try{
                     // console.log("JSONParse: "+ requi)
                     //requi = cargo.pop();   
                     try{
-                        var sqlUpdate = "UPDATE `entrevistas` SET `cargo` = '"+list_+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+                        var sqlUpdate = "UPDATE `entrevistas` SET `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
                         con.query(sqlUpdate, function (err, result) {
                             if (err) throw err;
                             console.log("guardado en db");
