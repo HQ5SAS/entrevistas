@@ -42,7 +42,7 @@ con.query(sqlVideo, async function (err, result){
                 cargo = list_;
                 console.log(requi)
                 // console.log("JSONParse: "+ requi)
-                requi = requi.pop();   
+                requi = cargo.pop();   
                 try{
                     var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
                     con.query(sqlUpdate, function (err, result) {
