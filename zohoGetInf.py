@@ -45,7 +45,7 @@ def zoho_api():
             requi= c_data[0]['REQUISICION_RELATED']['display_value']
             lista.append(cargo)
             lista.append(requi)
-            print(cargo)
+            print(requi)
         else:
             print('err. ERROR:',c_js['message'])
 zoho_api()

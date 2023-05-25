@@ -3,7 +3,7 @@ const { exportsDB } = require("./db");
 const con = exportsDB();
 const { spawn } = require("child_process");
 
-let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where cargo IS NULL OR requisicion = ''";
+let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where requisicion IS NULL OR requisicion = ''";
 
 function python_getInfo(content) {
   return new Promise((resolve, reject) => {
@@ -20,7 +20,6 @@ function python_getInfo(content) {
     });
 
     pythonProcess.stdout.on("end", function () {
-      console.log(python_response);
       resolve(python_response);
     });
 
@@ -49,9 +48,8 @@ con.query(sqlVideo, async function (err, result) {
         console.log(id_);
 
         const response = await python_getInfo({ "key": "contenido", "id": id_ });
-        console.log(response);
 
-        var sqlUpdate = "UPDATE `entrevistas` SET `cargo` = '" + response + "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+        var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '" + response + "' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
         con.query(sqlUpdate, function (err, result) {
           if (err) throw err;
           console.log("guardado en db");
