@@ -24,11 +24,15 @@ function python_getInfo(content) {
         resolve(python_response);
       });
   
+      pythonProcess.on("error", function (error) {
+        console.error(error);
+        reject(error);
+      });
+  
       pythonProcess.stdin.write(JSON.stringify(content));
       pythonProcess.stdin.end();
     });
   }
-
 con.query(sqlVideo, async function (err, result){
     //si toma error imprimir en consola
     if(err) console.log(err); 
