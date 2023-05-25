@@ -37,7 +37,9 @@ con.query(sqlVideo, async function (err, result){
         console.log(id_)
         //get id info
         list_= python_getInfo({ "key": "contenido", "id": id_ });
+        console.log("RESULTADO ZOHO: "+list_)
         try{
+
             requi = list_;
              cargo = requi.pop();   
              try{
