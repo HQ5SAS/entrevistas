@@ -3,7 +3,7 @@ const { exportsDB } = require("./db");
 const con = exportsDB();
 const { spawn } = require("child_process");
 
-let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where cargo IS NULL OR requisicion = ''";
+let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where cargo IS NULL OR cargo = ''";
 
 function python_getInfo(content) {
   return new Promise((resolve, reject) => {
