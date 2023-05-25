@@ -43,7 +43,7 @@ def zoho_api():
             
             c_data = c_js['data']
             print(c_data)
-            cargo=c_data[0]['CARGO']['display_value']
+            cargo=c_data[0]['CARGO_APLICAR_CONVOCATORIA']['display_value']
             print (cargo)
             requi= c_data[0]['REQUISICION_RELATED']['display_value']
             print(requi)
