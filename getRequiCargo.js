@@ -41,15 +41,14 @@ con.query(sqlVideo, async function (err, result){
             try{
             list_= await python_getInfo({ "key": "contenido", "id": id_ });
             console.log("RESULTADO ZOHO: "+list_)
-            
-                requi = JSON.parse(list_);
-                console.log("JSONParse: "+ requi)
-                cargo = requi.pop();   
-                var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
-                await con.query(sqlUpdate, function (err, result) {
-                    if (err) throw err;
-                    console.log("guardado en db");
-                    });
+            requi = JSON.parse(list_);
+            console.log("JSONParse: "+ requi)
+            cargo = requi.pop();   
+            var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+            await con.query(sqlUpdate, function (err, result) {
+                if (err) throw err;
+                console.log("guardado en db");
+                });
             
             }
             catch(err){
@@ -57,7 +56,7 @@ con.query(sqlVideo, async function (err, result){
             }
 
         }        
-
+        proceso()
         
         
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
