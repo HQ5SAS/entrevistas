@@ -39,9 +39,10 @@ con.query(sqlVideo, async function (err, result){
         //get id info    
         function proceso(list_){
             cargo=list_;
-            console.log(cargo);
+            
             setTimeout(() => {
                 try{
+                    console.log(cargo);
                     // console.log("JSONParse: "+ requi)
                     //requi = cargo.pop();   
                     try{
@@ -58,7 +59,7 @@ con.query(sqlVideo, async function (err, result){
                 catch(err){
                     console.log(err);
             }
-            }, 4000);
+            }, 10000);
             
         }
         proceso( python_getInfo({ "key": "contenido", "id": id_ }));
