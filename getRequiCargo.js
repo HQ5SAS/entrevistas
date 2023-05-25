@@ -39,7 +39,7 @@ con.query(sqlVideo, async function (err, result){
         //get id info
         
 
-        list_= python_getInfo({ "key": "contenido", "id": id_ });
+        list_= await python_getInfo({ "key": "contenido", "id": id_ });
         console.log("RESULTADO ZOHO: "+list_)
         try{
             requi = JSON.parse(list_);
