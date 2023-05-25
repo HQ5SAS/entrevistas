@@ -6,7 +6,7 @@ const { spawn, ChildProcess } = require("child_process");
 // let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where requisicion IS NULL OR requisicion = ''"
 let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas where aplicar_convocatorias_id = '3960020000075914707'"
 
-
+var x=""
 function python_getInfo(content) {
 
     //subproceso python fn
@@ -27,6 +27,7 @@ function python_getInfo(content) {
     });
     pythonProcess.stdin.write(JSON.stringify(content));
     pythonProcess.stdin.end();
+    x=python_response
     return python_response
 }
 
@@ -38,8 +39,8 @@ con.query(sqlVideo, async function (err, result){
         console.log(id_)
         //get id info    
         function proceso(){
-            cargo=python_getInfo({ "key": "contenido", "id": id_ });
-            
+            python_getInfo({ "key": "contenido", "id": id_ });
+            cargo=x;
             setTimeout(() => {
                 try{
                     console.log("cargo: "+cargo);
