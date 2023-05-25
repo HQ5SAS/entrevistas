@@ -37,8 +37,8 @@ con.query(sqlVideo, async function (err, result){
         var id_=result[index]["aplicar_convocatorias_id"];
         console.log(id_)
         //get id info    
-        function proceso(list_){
-            cargo=list_;
+        function proceso(){
+            cargo=python_getInfo({ "key": "contenido", "id": id_ });
             
             setTimeout(() => {
                 try{
@@ -62,7 +62,7 @@ con.query(sqlVideo, async function (err, result){
             }, 10000);
             
         }
-        proceso( python_getInfo({ "key": "contenido", "id": id_ }));
+        proceso( );
         
         //para cada pregunta existente por entrevista crea ruta según parametrización (rutaDigitalocean/idRegistro_numeroPregunta.mp4)
        
