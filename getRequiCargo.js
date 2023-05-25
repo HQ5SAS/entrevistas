@@ -35,22 +35,24 @@ con.query(sqlVideo, async function (err, result){
     for(index in result){
         //get id info    
         function proceso(){
+            try{
             var id_=result[index]["aplicar_convocatorias_id"];
              console.log(id_)
             python_getInfo({ "key": "contenido", "id": id_ }).then((response) => {
                 // Hacer algo con la respuesta de Python
-                console.log(response);
-                try{          
-                    var sqlUpdate = "UPDATE `entrevistas` SET `cargo` = '"+response+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
-                    con.query(sqlUpdate, function (err, result) {
-                        if (err) throw err;
-                        console.log("guardado en db");
-                        });
-                }
-                catch(err){
-                    console.log(err);
-            }
+            console.log(response);  
+              
+            var sqlUpdate = "UPDATE `entrevistas` SET `cargo` = '"+response+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
+            con.query(sqlUpdate, function (err, result) {
+                if (err) throw err;
+                console.log("guardado en db");
+                });
+
               })
+            }
+            catch(err){
+                console.log(err)
+            }
 
         }
         proceso();
