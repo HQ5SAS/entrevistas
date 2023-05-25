@@ -42,7 +42,7 @@ con.query(sqlVideo, async function (err, result){
             
             setTimeout(() => {
                 try{
-                    console.log(cargo);
+                    console.log("cargo: "+cargo);
                     // console.log("JSONParse: "+ requi)
                     //requi = cargo.pop();   
                     try{
