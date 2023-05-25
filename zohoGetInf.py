@@ -5,7 +5,6 @@ import requests
 comando = sys.stdin.readline()
 json_input = json.loads(comando)
 id = json_input["id"]
-id='3960020000012096751'
 cargo=""
 lista=[]
 def zoho_api():
