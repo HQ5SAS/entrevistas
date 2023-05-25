@@ -1,10 +1,10 @@
-# import sys
+import sys
 import json
 import requests
 
-# comando = sys.stdin.readline()
-# json_input = json.loads(comando)
-# id = json_input["id"]
+comando = sys.stdin.readline()
+json_input = json.loads(comando)
+id = json_input["id"]
 id='3960020000012096751'
 cargo=""
 lista=[]
@@ -42,11 +42,8 @@ def zoho_api():
         elif (c_code == 3000):
             
             c_data = c_js['data']
-            print(c_data)
             cargo=c_data[0]['CARGO_APLICAR_CONVOCATORIA']['display_value']
-            print (cargo)
             requi= c_data[0]['REQUISICION_RELATED']['display_value']
-            print(requi)
             lista.append(cargo)
             lista.append(requi)
             print(lista)
