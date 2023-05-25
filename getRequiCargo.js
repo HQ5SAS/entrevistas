@@ -36,11 +36,13 @@ con.query(sqlVideo, async function (err, result){
         var id_=result[index]["aplicar_convocatorias_id"];
         console.log(id_)
         //get id info
+        
+
         list_= python_getInfo({ "key": "contenido", "id": id_ });
         console.log("RESULTADO ZOHO: "+list_)
         try{
-
-            requi = list_;
+            requi = JSON.parse(list_);
+            console.log("JSONParse: "+ requi)
              cargo = requi.pop();   
              try{
                 var sqlUpdate = "UPDATE `entrevistas` SET `requisicion` = '"+requi+"', `cargo` = '"+cargo+"' WHERE (`aplicar_convocatorias_id` = '" + id_ + "');";
