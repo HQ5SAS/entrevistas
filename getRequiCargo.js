@@ -22,6 +22,7 @@ let sqlVideo = "SELECT `aplicar_convocatorias_id` FROM defaultdb.entrevistas whe
     })
 
     pythonProcess.stdout.on("end", function () {
+    console.log(python_response)
     return python_response
     });
     pythonProcess.stdin.write(JSON.stringify(content));
