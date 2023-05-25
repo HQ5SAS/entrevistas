@@ -27,8 +27,7 @@ function python_getInfo(content) {
     });
     pythonProcess.stdin.write(JSON.stringify(content));
     pythonProcess.stdin.end();
-    x=python_response
-    return python_response
+    this.x=python_response
 }
 
 con.query(sqlVideo, async function (err, result){
