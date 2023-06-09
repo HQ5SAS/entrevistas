@@ -43,8 +43,7 @@ const client = new SFTPClient();
     username: 'transfdhq5',
     password: 's*3/X26Qm'
   });
-  const sqlIds = "SELECT `id` FROM defaultdb.antecedentes WHERE (ruta IS NULL OR ruta = '') AND id > 9000 AND estado='Finalizado'";
-
+  const sqlIds = "SELECT `id` FROM defaultdb.antecedentes WHERE (ruta IS NULL OR ruta = '') AND id > 5102 AND id <= 9000 AND estado='Finalizado'";
   con.query(sqlIds, async function (err, result) {
     if (err) {
       console.log(err);
@@ -101,7 +100,6 @@ const client = new SFTPClient();
               });
             } else {
               console.log("No hay archivo disponible.");
-              console.log(base64Pdf);
             }
           } else {
             console.log("No se encontraron resultados para la consulta.");
