@@ -43,7 +43,7 @@ const client = new SFTPClient();
     username: 'transfdhq5',
     password: 's*3/X26Qm'
   });
-  const sqlIds = "SELECT `id` FROM defaultdb.antecedentes where id = 8198 ";
+  const sqlIds = "SELECT `id` FROM defaultdb.antecedentes where ruta IS NULL OR ruta = '' ";
 
   con.query(sqlIds, async function (err, result) {
     if (err) {
